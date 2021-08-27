@@ -1,12 +1,9 @@
-const fs = require('fs');
-  
-// Add a todo item 
+const fs = require('fs');  
 var addTodo = (title) => {
     var todos = fetchTodos();
     var todo = {
         title
     };
-  
     var duplicatetodos = todos.filter(
         (todo) => todo.title === title);
   
@@ -16,8 +13,6 @@ var addTodo = (title) => {
         return todo;
     }
 };
-  
-// Delete a todo item 
 var deleteTodo = (title) => {
     var todos = fetchTodos();
     var filteredtodos = todos.filter(
@@ -26,24 +21,15 @@ var deleteTodo = (title) => {
   
     return todos.length !== filteredtodos.length;
 };
-  
-  
-// Read a todo item 
 var readTodo = (title) => {
     var todos = fetchTodos();
     var filteredTodos = todos.filter(
         (todo) => todo.title === title);
     return filteredTodos[0];
 };
-  
-  
-// List all todo items 
 var listTodos = () => {
     return fetchTodos();
 };
-  
-  
-// Utility functions
 var fetchTodos = () => {
     try {
         var todosString = 
@@ -53,18 +39,14 @@ var fetchTodos = () => {
         return [];
     }
 };
-  
 var saveTodos = (todos) => {
     fs.writeFileSync('tasks-data.json', 
         JSON.stringify(todos));
 };
-  
 var logTodo = (todo) => {
     console.log('----------------------------------');
     console.log(`Title : ${todo.title}`);
 };
-  
-// Exporting function
 module.exports = {
     addTodo,
     deleteTodo,
